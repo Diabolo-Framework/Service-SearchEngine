@@ -64,11 +64,13 @@ class Solr implements SearchEnginHandlerInterface {
         }
         
         $result = array();
-        $result['count'] = $responseBody->numFound;
-        $result['start'] = $responseBody->start;
+        $result['count'] = $responseBody->response->numFound;
+        $result['start'] = $responseBody->response->start;
         $result['docs'] = array();
-        foreach ( $responseBody->docs as $doc ) {
-            $result['docs'] = (array)$doc;
+        if ( false !== $responseBody->response->docs ) {
+            foreach ( $responseBody->response->docs as $doc ) {
+                $result['docs'][] = (array)$doc;
+            }
         }
         return $result;
     }

@@ -9,7 +9,7 @@ interface SearchEnginHandlerInterface {
     
     
     function __construct( $option );
-    function query();
+    function query( $query );
     function updateDocById($id, $docData );
     function deleteDocById($id);
 }
